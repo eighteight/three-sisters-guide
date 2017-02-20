@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/facelets/viewTemplate.xhtml">
+	<ui:define name="matrix">
+		<div id="matrix">
+			<ui:repeat var="project" value="#{projectListHandler.beanList}"
+				styleClass="box">
+				<div class="matrixcell" style="cursor:hand; cursor:pointer" onclick="location='showProject.jsf?id=#{project.id}'">
+					<span class="lowerLabel">
+						<h:outputLink value="showProject.jsf" styleClass="highLightLink">
+							<h:outputText value="#{project.name}" />
+							<f:param name="id" value="#{project.id}" />
+						</h:outputLink>
+					</span>
+				</div>
+			</ui:repeat>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

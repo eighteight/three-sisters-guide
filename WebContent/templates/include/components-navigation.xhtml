@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+<ui:composition>            
+
+<rich:panel styleClass="panel_menu">
+<rich:panelBar selectedPanel="#{componentNavigator.currentComponent.group}" height="550" width="100%">
+	<rich:panelBarItem   id="ajaxSupport" label="Ajax Support">
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.ajaxSupport}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem  id="ajaxResources" label="Resources/Beans Handling">
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.ajaxResources}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem   styleClass="panel_menu_bar"  id="ajaxOutput" label="Ajax Output"> 
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.ajaxOutput}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="ajaxMisc" label="Ajax Miscellaneous"> 
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.ajaxMisc}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richDataIterators" label="Data Iteration"> 
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richDataIterators}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richDragDrop" label="Drag-Drop Support">
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richDragDropComponents}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richMenu" label="Rich Menu"> 
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richMenu}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richTree" label="Rich Trees"> 
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richTree}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richOutputs" label="Rich Output"> 
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richOutputs}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richInputs" label="Rich Input"> 
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richInputs}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+	<rich:panelBarItem id="richMisc" label="Rich Miscellaneous"> 
+		<ui:include src="/templates/include/components-group.xhtml" >
+ 			<ui:param name="components" value="#{componentNavigator.richMisc}" />
+ 		</ui:include>
+	</rich:panelBarItem>
+</rich:panelBar>
+</rich:panel>
+</ui:composition>
+</html>
+

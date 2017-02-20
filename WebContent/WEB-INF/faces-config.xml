@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+ <managed-bean>
+  <managed-bean-name>gmapHandler</managed-bean-name>
+  <managed-bean-class>ru.scriptum.view.handler.gmap.GmapHandler</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>graphHandler</managed-bean-name>
+  <managed-bean-class>ru.scriptum.view.handler.GraphHandler</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>dndBean</managed-bean-name>
+  <managed-bean-class>org.richfaces.demo.dnd.DndBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>eventBean</managed-bean-name>
+  <managed-bean-class>org.richfaces.demo.dnd.EventBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>dndBean</property-name>
+   <property-class>org.richfaces.demo.dnd.DndBean</property-class>
+   <value>#{dndBean}</value>
+  </managed-property>
+ </managed-bean>
+ <validator>
+  <validator-id>ru.scriptum.view.validator.SelectedItemsRange</validator-id>
+  <validator-class>ru.scriptum.view.validator.SelectedItemsRangeValidator</validator-class>
+ </validator>
+ <validator>
+  <validator-id>uniquenessValidator</validator-id>
+  <validator-class>ru.scriptum.view.validator.UniquenessValidator</validator-class>
+ </validator>
+ <validator>
+  <validator-id>emailValidator</validator-id>
+  <validator-class>ru.scriptum.view.validator.EmailValidator</validator-class>
+ </validator>
+ <validator>
+  <validator-id>passwordValidator</validator-id>
+  <validator-class>ru.scriptum.view.validator.PasswordValidator</validator-class>
+ </validator>
+ <validator>
+  <validator-id>captchaValidator</validator-id>
+  <validator-class>ru.scriptum.view.validator.CaptchaValidator</validator-class>
+ </validator>
+ <application>
+  <!-- view-handler>com.sun.facelets.FaceletViewHandler</view-handler -->
+  <navigation-handler>ru.scriptum.view.handler.LoginNavigationManager</navigation-handler>
+  <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+  <locale-config>
+   <default-locale>ru</default-locale>
+   <supported-locale>en</supported-locale>
+   <supported-locale>ru</supported-locale>
+  </locale-config>
+  <message-bundle>ru.scriptum.view.bundle.MessageBundle</message-bundle>
+ </application>
+ <lifecycle>
+  <phase-listener>ru.scriptum.model.dao.db4o.Db4oDaoSupport</phase-listener>
+ </lifecycle>
+</faces-config>

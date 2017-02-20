@@ -1,0 +1,189 @@
+.globalmatrix {
+	margin-left: 0px;
+	width:3060px;
+}
+
+.seminarTitles {
+	width: 2040px;
+}
+
+.graphTitle {
+	background-color:#333333;
+	color:#FFFFFF;
+	padding: 10px 0px 10px 10px;
+	font-size:	2em;
+	width: 1000px;
+	height: 40px;
+	position: relative;
+	float: left;
+	cursor: pointer;
+}
+#graphContainer {
+	position: relative;
+	float: left;
+	width: 2040px;
+}
+.graphSlider {
+	position: relative;
+	float: left;
+	}
+#graph {
+	width: 1000px;
+	height: 640px;
+	margin: 5px 0px 10px 0px;
+	backround-color: #EFEFEF;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #eeeeee;
+	border-left: 1px solid #cccccc;
+	border-top: 1px solid #eeeeee;
+	position: relative;
+	left: 0px;
+	top: 0px;
+}
+
+.matrixTitle {
+	background-color:#333333;
+	color:#FFFFFF;
+	padding: 10px 0px 10px 20px;
+	margin: 0px 0px 0px 10px;
+	font-size:	2em;
+	width: 1000px;
+	height: 40px;
+	position: relative;
+	float: left;
+	cursor: pointer;
+}
+
+#matrix {
+	width: 1000px;
+	height: 640px;
+	left: 1000px;
+	top: 0px;
+	background-color: red;
+	margin: 5px 0px 10px 10px;
+	background-color: #CCCCCC;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #eeeeee;
+	border-left: 1px solid #cccccc;
+	border-top: 1px solid #eeeeee;
+	position: absolute;
+}
+
+#sliders {
+	position: relative;
+	width: 1100px;
+	float: left;
+}
+
+.sliderLabel {
+	position: relative;
+	float: left;
+	margin-right: 10px;
+	font-size: 75%;
+}
+
+
+.treeView {
+	background-color: #ffffff;
+	position: static;
+	float:left;
+	margin-right: 100px;
+}
+
+.popup {
+	background-color: infobackground;
+	color: infotext;
+	border: 1px solid inactiveborder;
+}
+.popup a{
+	color: infotext;
+}
+.beanEdit {
+	margin-left:200px;
+	border: 1px solid black;
+}
+.matrixDiv {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	}
+
+.theatreNode {
+	font-size:1em;
+}
+
+.theatreNodeTextDiv {
+	position: relative;
+	top:0px;
+}
+
+.theatreNodeRoot {
+	font-size:xx-large;
+	font-weight: bold;
+}
+
+.theatreNodeLink {
+	position: relative;
+	margin-right: 2px;
+	float: left;
+	height: 12px;
+	width: 12px;
+	background:transparent url(images/borderless-square.png) no-repeat;
+}
+
+.theatreNodeLinkContentAndTarget{
+	position: relative;
+	margin-right: 2px;
+	float: left;
+	height: 12px;
+	width: 12px;
+	background:transparent url(images/bordered-arrow.png) no-repeat;
+}
+
+.theatreNodeLinkContent{
+	position: relative;
+	margin-right: 2px;
+	float: left;
+	height: 12px;
+	width: 12px;
+	background:transparent url(images/bordered-square.png) no-repeat;
+}
+
+.theatreNodeLinkTarget{
+	position: relative;
+	margin-right: 2px;
+	float: left;
+	height: 12px;
+	width: 12px;	
+	background:transparent url(images/borderless-arrow.png) no-repeat;
+}
+.infocus {
+	font-size:4em;
+	background-color:#FFFFFF;
+	background:transparent url(images/shadow/shadowAlpha.png) no-repeat scroll right bottom !important;
+	clear:both;
+	float:left;
+	padding:5px;
+	margin:10px 0pt 0pt 10px !important;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.infocus div {
+	background: transparent none repeat scroll 0% !important;
+	padding: 0pt !important;
+}
+
+.infocus p {
+  color: #777;
+  background-color: #fff;
+  font: italic 1em georgia, serif;
+  border: 1px solid #dddddd;
+  padding: 8px;
+  margin: -6px 6px 6px -6px !important;
+  }
+
+.visitedNode {
+	color:#cccccc;
+	background-color:#FFFFFF;
+}

@@ -1,0 +1,19 @@
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<div>
+	<h:commandLink value="#{msg.deleteLabel}" action="#{mainBean.actionDelete}" type="submit" rendered="#{mainBean.persists}" immediate="true">
+		<f:param name="id" value="#{mainBean.id}" />
+	</h:commandLink>
+	<h:outputText value=" / " styleClass="highLightText" rendered="#{mainBean.persists}" />
+	<h:commandLink value="#{msg.updateLabel}" action="#{mainBean.actionUpdate}" type="submit" rendered="#{mainBean.persists}">
+		<f:param name="id" value="#{mainBean.id}" />
+	</h:commandLink>
+	<h:commandLink value="#{msg.createLabel}" action="#{mainBean.actionCreate}" type="submit" rendered="#{!mainBean.persists}">
+		<f:param name="id" value="#{mainBean.id}" />
+		<f:param name="templateType" value="#{mainBean.templateType}" />
+	</h:commandLink>
+</div>
+</html>

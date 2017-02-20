@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core">
+<ui:composition template="/facelets/showTemplate.xhtml">
+
+	<ui:define name="pageHeader">List Projects</ui:define>
+
+	<ui:define name="matrix">
+		<h:form id="editBeanForm">
+			<h:inputHidden id="templateType" value="projectTemplateType" />
+			<h:dataTable var="templateBean" value="#{templateListBean.beanList}"
+				columnClasses="list-column-right,list-column-left" styleClass="box">
+				<h:column>
+					<h:outputLink value="showProject.jsf" styleClass="highLightLink">
+						<h:outputText value="#{templateBean.name}" />
+						<f:param name="id" value="#{templateBean.id}" />
+					</h:outputLink>
+				</h:column>
+				<f:facet name="header">
+					<h:column>
+						<h:outputText value="#{bundle.allProjectsLabel}" />
+					</h:column>
+				</f:facet>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

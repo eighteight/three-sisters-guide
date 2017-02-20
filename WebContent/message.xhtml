@@ -1,0 +1,63 @@
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/facelets/viewTemplate.xhtml">
+
+<ui:define name="pageHeader">Login</ui:define>
+
+<ui:define name="matrix">
+	<h:form id="messageForm">
+          <table align="center" width="500">
+          	    <tr >
+          	        <td></td>
+            			<td align="left">
+                  		<h:outputText value="Message" styleClass="headerText"/>
+                  	</td>
+              	</tr>
+          		<tr>
+          			<td align="right" width="100">
+          				<h:outputText value="First Name"/>
+          			</td>
+          			<td align="left" width="400">
+                 			<h:inputText value="#{messageBean.firstName}" id="firstName" required="true"/>
+               			<h:message styleClass="errorMessage" for="firstName"/>
+               		</td>
+               	</tr>
+            	<tr>
+         			<td align="right" width="100">
+        				<h:outputText value="Last Name"/>
+        			</td>
+        			<td align="left" width="400">
+               			<h:inputText value="#{messageBean.lastName}" id="lastName" required="true"/>
+               			<h:message styleClass="errorMessage" for="lastName"/>
+               		</td>
+          		</tr>
+           		<tr>
+        			<td align="right" width="100">
+        				<h:outputText value="Email Address"/>
+        			</td>
+        			<td align="left" width="400">
+               			<h:inputText value="#{messageBean.emailAddress}" id="emailAddress" required="true"/>
+               			<h:message styleClass="errorMessage" for="emailAddress"/>
+               		</td>
+          		</tr>
+            	<tr>
+        			<td align="right" width="100" valign="bottom">
+        				<h:outputText value="Content"/>
+        			</td>
+        			<td align="left" width="400">
+               			<h:inputTextarea value="#{messageBean.content}" id="content" rows="18" cols="28"/>
+               			<h:message styleClass="errorMessage" for="content"/>
+               		</td>
+          		</tr>        		             		
+          		<tr>
+          			<td></td>
+          			<td align="left">
+                		<h:commandButton value="Submit" action="#{messageBean.submitAction}"/>
+                		</td>
+            		</tr>              		
+        		</table>        
+          </h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<link rel="stylesheet" type="text/css" href="css/seminar/seminar.css" />
+	<link rel="stylesheet" type="text/css" href="CssServlet" />
+	<script language="JavaScript" src="javascript/graph/jsviz/physics/ParticleModel.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/physics/Magnet.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/physics/Spring.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/physics/Particle.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/physics/RungeKuttaIntegrator.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/layout/graph/ForceDirectedLayout.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/layout/view/HTMLGraphView.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/layout/view/SVGGraphView.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/util/Timer.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/util/EventHandler.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/util/NullEventHandler.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/io/DataGraph.js" />
+	<script language="JavaScript" src="javascript/graph/jsviz/io/XMLTreeLoader.js" />
+	<script language="JavaScript" src="javascript/graph/Graph.js" />
+	<script language="JavaScript" src="javascript/style/styley.js" />
+	
+	<script type="text/javascript">
+	    //<![CDATA[
+	    jsGlobalOnLoadFunctions['initGraph'] = 'initGraph()';
+	    function getRestLength(){
+	    	return 40;
+	    }
+	    function initGraph(){
+	        graphDiv = document.getElementById("graph");
+	        graphDiv.oncontextmenu = new NullEventHandler();
+							
+			matrix = document.getElementById("matrix");
+			matrixTitle = document.getElementById("matrixTitle");
+			matrixTitle.onclick = scrollLeft;
+			var graphTitle = document.getElementById("graphTitle");
+			graphTitle.onclick=refreshGraph;
+			rootNode = null;
+			graph = new Graph();
+			graph.init(graphDiv, matrix, graphTitle, matrixTitle);
+			graph.onAjaxComplete('#{graphHandler.xml}');
+		}
+		function videoHandler (dataNode, modelNode){
+			matrixTitle.innerHTML = dataNode.text;
+			var innerhtml;
+			if (dataNode.mimeType=='video/x-flv'){
+				innerhtml = "<video id='sampleMovie' src='"+dataNode.video+"' controls></video>";
+			} else if (dataNode.mimeType == 'video/x-msvideo'||dataNode.mimeType == 'video/mpeg'){
+				innerhtml = "<video id='sampleMovie' src='"+dataNode.video+"' controls></video>";
+			} else if (dataNode.mimeType == 'video/x-msvideo'||dataNode.mimeType == 'video/mpeg'){
+				innerhtml = "<video id='sampleMovie' src='"+dataNode.video+"' controls></video>";
+			}
+			innerhtml +="<div style='font-size:70%;'>download <a href='"+dataNode.video+"'>"+dataNode.text+"</a></div>";
+			matrix.innerHTML = innerhtml;
+			scrollRight();
+			return true;
+		}
+		function imageHandler (dataNode, modelNode, nodeContainer){
+			matrixTitle.innerHTML = dataNode.text;
+			var innerhtml ="<img src='"+dataNode.image+"'>";
+			innerhtml += "<div>download <a href='"+dataNode.image+"'>"+dataNode.text+"</a></div>";
+			matrix.innerHTML = innerhtml;
+			//nodeContainer.innerHTML = innerhtml;
+			//showImage(dataNode.name);
+			scrollRight();
+			return true;
+		}
+		function webObjectHandler (dataNode, modelNode, nodeContainer){
+			matrixTitle.innerHTML = dataNode.text;
+			var innerhtml = dataNode.webObject.replaceAll(")", ">");
+			var innerhtml2 = innerhtml.replaceAll("(","<");
+			var innerhtml3 = innerhtml2.replaceAll("+","&");
+
+			matrix.innerHTML = innerhtml3;
+			scrollRight();
+			return true;
+		}
+	
+		function clickHandler (layout, dataNode, modelNode){
+			layout.clear();
+			updateGraph(dataNode.target);
+			return true;
+		}
+		
+		function refreshGraph(){
+			if (graph.rootNode.name) {
+			    graph.clear();
+				updateGraph(graph.rootNode.name);
+			}
+		}
+
+		function scrollRight(){
+			if (parent.frames.length != 0) {
+  				//parent.scroll(80,120);
+			} else {
+  				scroll(1000,120);
+			}			
+		}
+
+		
+		function scrollLeft(){
+			if (parent.frames.length != 0) {
+  				//parent.scroll(80,120);
+			} else {
+  				scroll(80,120);
+			}			
+		}
+
+		String.prototype.replaceAll = function( strTarget,strSubString){
+			var strText = this;
+			var intIndexOfMatch = strText.indexOf( strTarget );
+
+			while (intIndexOfMatch != -1){
+				strText = strText.replace( strTarget, strSubString );					 
+				intIndexOfMatch = strText.indexOf( strTarget );
+			}
+			return( strText );
+		}
+	    //]]>
+	 </script>
+</html>

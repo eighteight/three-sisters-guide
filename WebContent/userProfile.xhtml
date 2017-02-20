@@ -1,0 +1,72 @@
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/facelets/designTemplate.xhtml">
+
+	<ui:define name="pageHeader">Manage your profile</ui:define>
+
+	<ui:define name="matrix">
+		<h:form id="loginForm" acceptCharset="UTF-8">
+			<TABLE align="center" class="box">
+				<TR>
+					<TD
+						style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 20px; PADDING-TOP: 20px">
+					<TABLE>
+						<TR>
+							<TD align="right"><h:outputText value="#{msg.userName}" /></TD>
+							<TD align="left"><h:outputText value="#{userBean.username}"/></TD>
+						</TR>
+						<TR>
+							<TD align="right"><h:outputText value="Password" /></TD>
+							<TD align="left"><h:inputSecret value="#{userBean.password}"
+								id="password" required="true"
+								binding="#{userBean.passwordInput}" /> <h:message
+								styleClass="errorMessage" for="password" /></TD>
+						</TR>
+						<TR>
+							<TD align="right"><h:outputText value="Confirm Password" />
+							</TD>
+							<TD align="left"><h:inputSecret
+								value="#{userBean.password2}" id="password2" required="true"
+								validator="#{userBean.validatePassword}" /> <h:message
+								styleClass="errorMessage" for="password2" /></TD>
+						</TR>
+						<TR>
+							<TD align="right"><h:outputText value="Name" /></TD>
+							<TD align="left">
+								<h:inputText value="#{userBean.name}" id="name" required="true" />
+								<h:message styleClass="errorMessage" for="name" />
+							</TD>
+						</TR>
+						<TR>
+							<TD align="right"><h:outputText value="Email" /></TD>
+							<TD align="left"><h:inputText value="#{userBean.email}"
+								id="email" required="true">
+								<f:validator validatorId="emailValidator" />
+							</h:inputText> <h:message styleClass="errorMessage" for="email" /></TD>
+						</TR>
+						<TR>
+							<TD align="right"><h:outputText value="#{msg.locale_label}" />
+							</TD>
+							<TD><h:selectOneListbox value="#{userBean.locale}" required="true" rendered="true" size="1">
+								<f:selectItem itemValue="ru" itemLabel="#{msg.locale_ru}" />
+								<f:selectItem itemValue="en" itemLabel="#{msg.locale_en}" />
+							</h:selectOneListbox></TD>
+						</TR>
+						<TR>
+							<TD colspan="2" align="center">
+								<h:commandButton value="#{msg.manageLabel}" action="#{userBean.manageAction}" />
+							</TD>
+						</TR>
+						<TR>
+							<TD colspan="2" align="center">
+							<h:messages errorClass="errorMessage" globalOnly="true" /></TD>
+						</TR>
+					</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

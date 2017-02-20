@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<f:view locale="#{userBean.locale}">
+	<f:loadBundle basename="ru.scriptum.view.bundle.MessageBundle"
+		var="msg" />
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<title>Scriptum | #{msg.theatreMetaTextLabel}</title>
+	</head>
+	<body>
+	<ui:insert name="pageHeader">Page Header</ui:insert>
+	<ui:insert name="matrix">Page Body</ui:insert>
+	<ui:insert name="footer">
+		<div align="center">Scriptum</div>
+		<div align="center"><sup> * </sup></div>
+	</ui:insert>
+	<ui:insert name="navigate">
+		<ui:include src="navigate.xhtml" />
+	</ui:insert>
+	</body>
+</f:view>
+</html>

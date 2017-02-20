@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="textNameLabel"
+		class="ru.scriptum.model.properties.Property">
+		<constructor-arg value="textNameLabel" />
+		<constructor-arg value="" />
+		<constructor-arg type="boolean" value="true" />
+		<constructor-arg type="boolean" value="true" />
+	</bean>
+	<bean id="text" class="ru.scriptum.model.properties.Property">
+		<constructor-arg value="text" />
+		<constructor-arg value="" />
+		<constructor-arg type="boolean" value="false" />
+		<constructor-arg type="boolean" value="false" />
+	</bean>
+	<bean id="textTemplate"
+		class="ru.scriptum.model.properties.PropertyTemplateFactoryBean">
+		<property name="properties">
+			<list>
+				<ref local="textNameLabel" />
+				<ref local="text" />
+			</list>
+		</property>
+	</bean>
+</beans>

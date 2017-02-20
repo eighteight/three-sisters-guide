@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+<ui:composition template="/facelets/viewTemplate.xhtml">
+	<ui:define name="customJavaScript">
+		<link rel="stylesheet" type="text/css" href="css/seminar/seminar.css" />
+		<script language="JavaScript" src="javascript/flow/myXMLOverHTTP.js"></script>
+		<script type="text/javaScript" src="javascript/flow/Array.js"></script>
+		<script type="text/javaScript" src="javascript/flow/Numbers.js"></script>
+
+		<script type="text/javaScript" src="javascript/flow/tinyDOM.js"></script>
+		<script type="text/javaScript" src="javascript/flow/Animation.js"></script>
+		<script type="text/javaScript" src="javascript/flow/Cookie.js"></script>
+		<script type="text/javaScript" src="javascript/flow/TV.js"></script>
+		<script type="text/javascript" src="javascript/flow/urchin.js"></script>
+	</ui:define>
+	<ui:define name="matrix">
+		<body onload="initGraph()">
+		<div id="seminarTitles" class="seminarTitles">
+			<div id="graphTitle" class="graphTitle"></div>
+			<div id="matrixTitle" class="matrixTitle"></div>
+		</div>
+//////
+		
+//////
+		</body>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd"
+	default-init-method="init" default-destroy-method="destroy">
+	<!-- DAO objects: db4o implementation -->
+	<bean id="dao" class="ru.scriptum.model.dao.db4o.DaoDb4oImpl">
+		<property name="objectContainer">
+			<ref bean="db4oClient" />
+		</property>
+	</bean>
+	<bean id="userDao"
+		class="ru.scriptum.model.dao.db4o.UserDaoDb4oImpl">
+		<property name="objectContainer">
+			<ref bean="db4oClient" />
+		</property>
+	</bean>
+
+	<!-- ========================= Start of SERVICE DEFINITIONS ========================= -->
+
+	<bean id="propertyPlaceholder"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="WEB-INF/smtpConf.properties" />
+	</bean>
+
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="${smtpPort}" />
+		<property name="protocol" value="${smtpProtocol}" />
+		<property name="username" value="${smtpUsername}" />
+		<property name="password" value="${smtpPassword}" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtps.auth">true</prop>
+				<prop key="mail.smtps.starttls.enable">true</prop>
+				<prop key="mail.smtps.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--  User Service Defintion -->
+	<bean id="userService"
+		class="ru.scriptum.model.service.impl.UserServiceImpl">
+		<property name="userDao">
+			<ref local="userDao" />
+		</property>
+		<property name="mailSender">
+			<ref local="mailSender" />
+		</property>
+		<property name="smtpHost">
+			<value>${smtpHost}</value>
+		</property>
+		<property name="smtpAuthRequired">
+			<value>true</value>
+		</property>
+		<property name="smtpUsername">
+			<value>${smtpUsername}</value>
+		</property>
+		<property name="smtpPassword">
+			<value>${smtpPassword}</value>
+		</property>
+		<property name="smtpPort">
+			<value>${smtpPort}</value>
+		</property>
+		<property name="defaultSenderAddress">
+			<value>${defaultSenderAddress}</value>
+		</property>
+		<property name="defaultSenderName">
+			<value>${defaultSenderAddress}</value>
+		</property>
+	</bean>
+
+	<bean id="randomService"
+		class="ru.scriptum.model.service.impl.RandomService">
+	</bean>
+
+
+	<!-- Bean Service Definition -->
+	<bean id="beanService"
+		class="ru.scriptum.model.service.impl.BeanServiceImpl">
+		<property name="dao">
+			<ref local="dao" />
+		</property>
+	</bean>
+
+	<bean id="beanBuilder"
+		class="ru.scriptum.view.builder.BeanBuilder">
+		<property name="elementBeanMap">
+			<map>
+				<entry key="ru.scriptum.data.impl.TemplateElement"
+					value="ru.scriptum.view.handler.TemplateBean" />
+				<entry key="ru.scriptum.model.domaindata.ImageElement"
+					value="ru.scriptum.view.handler.UploadBean" />
+				<entry key="ru.scriptum.model.domaindata.User"
+					value="ru.scriptum.view.handler.UserBean" />
+			</map>
+		</property>
+	</bean>
+
+	<!-- Image Service Definition -->
+	<bean id="imageService"
+		class="ru.scriptum.model.service.impl.DaoServiceImpl">
+		<property name="dao">
+			<ref local="dao" />
+		</property>
+	</bean>
+</beans>

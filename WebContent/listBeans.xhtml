@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core">
+<ui:composition template="/facelets/designTemplate.xhtml">
+
+	<ui:define name="pageHeader">List Projects</ui:define>
+
+	<ui:define name="matrix">
+		<h:form id="editBeanForm">
+			<h:dataTable var="heteroBean" value="#{listBean.beanList}"
+				columnClasses="list-column-right,list-column-left" styleClass="box">
+				<h:column>
+					<h:commandLink action="editor" value="#{heteroBean.name}"
+						rendered="#{heteroBean.templateType=='text'}">
+						<f:param name="id" value="#{heteroBean.id}" />
+					</h:commandLink>
+					<h:commandLink action="editBean" value="#{heteroBean.name}"
+						rendered="#{heteroBean.templateType!='text'}">
+						<f:param name="id" value="#{heteroBean.id}" />
+					</h:commandLink>
+				</h:column>
+				<h:column>
+					<h:outputText value="#{heteroBean.templateType}" />
+				</h:column>
+				<f:facet name="header">
+					<h:column>
+						<h:outputText value="#{bundle.allProjectsLabel}" />
+					</h:column>
+				</f:facet>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

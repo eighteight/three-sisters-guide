@@ -1,0 +1,91 @@
+html, body { width: 100%; height: 100%; display: block; padding: 0; margin: 0; overflow: hidden; font-family: tahoma; background: white; }
+
+.dialog	{ height: 300px; position: absolute; width: 346px; background: url(../i/panel.png) center top no-repeat; left: 50%; top: 50%; z-index: 20000; margin: -150px 0 0 -173px; overflow: visible; display: none; }
+.dialog .bottom { position: absolute; bottom: -14px; left: 0; height: 14px; width: 346px; background: url(../i/panel.png) center bottom no-repeat; }
+
+#ctFlow { width: 100%; height: 100%; overflow: hidden; position: relative; z-index: 99; }
+#ctFlow a { position: absolute; color: #aaa; display: block; font-size: 15pt; text-decoration: none; left: 100%; top: 0; white-space: nowrap; cursor: pointer; padding: 1px; }
+#ctFlow a.i10 { z-index: 100; font-size: 9pt; color: #bfd3e8; }
+#ctFlow a.i9 { z-index: 110; font-size: 11pt; color: #b5cfe9; }
+#ctFlow a.i8 { z-index: 120; font-size: 13pt; color: #a7c9eb; }
+#ctFlow a.i7 { z-index: 130; font-size: 15pt; color: #96c1ec; }
+#ctFlow a.i6 { z-index: 140; font-size: 17pt; color: #84b9ee; }
+#ctFlow a.i5 { z-index: 150; font-size: 19pt; color: #6fb1ef; }
+#ctFlow a.i4 { z-index: 160; font-size: 21pt; color: #5ca9f1; }
+#ctFlow a.i3 { z-index: 170; font-size: 23pt; color: #49a1f3; }
+#ctFlow a.i2 { z-index: 180; font-size: 25pt; color: #389af4; }
+#ctFlow a.i1 { z-index: 190; font-size: 27pt; color: #2a93f6; }
+#ctFlow a.i0 { z-index: 199; font-size: 29pt; color: #208ff7; }
+#ctFlow a.i0:hover,
+#ctFlow a.i1:hover,
+#ctFlow a.i2:hover,
+#ctFlow a.i3:hover,
+#ctFlow a.i4:hover,
+#ctFlow a.i5:hover,
+#ctFlow a.i6:hover,
+#ctFlow a.i7:hover,
+#ctFlow a.i8:hover,
+#ctFlow a.i9:hover,
+#ctFlow a.i10:hover { color: #c00000 !important; z-index: 200; }
+#ctFlow a.found { color: #307700 !important; }
+#ctFlow a em { color: #ccc; font-style: normal; }
+#ctFlow a:hover em { color: #c00000; }
+			
+#ctDebug { position: absolute; display: none; right: 100px; bottom: 15px; color: #cc0000; font-size: 9pt; }
+
+#ctPause { position: absolute; display: none; left: 50%; top: 50%; z-index: 10; width: 222px; height: 222px; margin: -111px 0 0 -111px; background: url(../i/pause.png) no-repeat 0 0; }
+
+#ctKeywords textarea { width: 306px; height: 150px; background: none; border: 0; margin: 0px 20px 10px 20px; color: #f0f0f0; font-size: 13pt; font-family: tahoma; }
+#ctKeywords button { font-size: 13px; }
+#ctKeywords div { border-top: 4px dashed #ff7800; margin: 20px 2px 20px 2px; }
+#ctKeywords.set50 div { border-top-color: #438d11; }
+#ctKeywords.set51 div { border-top-color: #b100b8; }
+
+#ctSettings { height: 280px; margin-top: -140px; }
+#ctSettings form { margin: 0; padding: 0; display: block; margin: 20px; font-size: 13px; color: #fff; }
+#ctSettings form fieldset { margin: 0 0 20px 0; padding: 0; border: 0; }
+#ctSettings form label { display: block; text-align: left; margin: 5px 0 10px 0; line-height: 100%; }
+#ctSettings form em { font-style: normal; cursor: pointer; }
+#ctSettings form .cb { padding-left: 20px; margin-bottom: 0; }
+#ctSettings form .cb input { position: absolute; margin: 2px 0 0 -20px; }
+#ctSettings form .select label { float: left; margin: 5px 10px 0px 0; } 
+#ctSettings form .input { margin: 0; height: 35px; line-height: 35px; padding-top: 5px; }
+
+#ctBaloon { background: url(../i/baloon.png) left top no-repeat; position: absolute; left: 0; top: -400px; max-width: 388px; max-height: 388px; z-index: 10000; margin-left: -40px; }
+#ctBaloon .bottom { position: absolute; top: 100%; width: 100%; height: 12px; bottom: 0px; background: url(../i/baloon.png) left -388px no-repeat; left: 0; overflow: hidden; }
+#ctBaloon .right { top: 0; position: absolute; left: 100%; width: 12px; height: 100%; right: 0px; background: url(../i/baloon.png) right top no-repeat; overflow: hidden; }
+#ctBaloon .corner { position: absolute; left: 100%; width: 12px; height: 12px; top: 100%; background: url(../i/baloon.png) right -388px no-repeat; overflow: hidden; }
+#ctBaloon p { margin: 5px 2px 5px 14px; font-size: 9pt; color: #eee; font-family: tahoma; line-height: 150%; }
+#ctBaloon a { position: static; color: #a9d1ff; margin: 27px 30px 7px 14px; font-size: 12pt; display: block; }
+#ctBaloon #ctIcons { position: absolute; right: 5px; top: 28px; display: none; }
+#ctBaloon.top { background-position: left bottom; }
+#ctBaloon.top p { margin: 0px 2px 27px 14px; }
+#ctBaloon.top .bottom { top: -12px; width: 100%; background-position: left -400px; }
+#ctBaloon.top .right { left: 100%; width: 12px; height: 100%; right: 0px; background-position: right bottom; }
+#ctBaloon.top .corner { left: 100%; width: 12px; height: 12px; top: -12px; background-position: right -400px; }
+#ctBaloon.top a { margin-top: 0px; }
+#ctBaloon.top #ctIcons { top: 2px; }
+#ctBaloon #ctUserPic { display: block; width: 50px; height: 50px; border: 1px solid #888; position: absolute; margin: 30px 10px 5px 15px; overflow: hidden; background: url(../i/loading.gif) center center no-repeat; left: 0; }
+#ctBaloon.top #ctUserPic { margin-top: 7px; }
+#ctBaloon.wUP p, #ctBaloon.wUP a { margin-left: 80px; }
+
+#ctWait { position: absolute; display: block; left: 50%; top: 50%; width: 500px; height: 50px; margin: -25px 0 0 -250px; color: #b0b0b0; font-size: 20pt; z-index: 1000; text-align: center; }
+
+#ctHelpLine { position: absolute; z-index: 1000; left: 15px; bottom: 15px; font-size: 9pt; color: #aaa; cursor: pointer; }
+
+#ctHelp { height: 280px; margin-top: -140px; }
+#ctHelp p { font-size: 9pt; color: #f0f0f0; margin: 17px 20px 0px 20px; }
+#ctHelp ul { font-size: 9pt; color: #f0f0f0; margin: 10px 0 0 0; list-style: none; padding: 0; }
+#ctHelp li { clear: left; padding: 5px 30px 0 30px; display: block; margin: 0; line-height: 100%; }
+#ctHelp ul span { display: block; float: left; color: #ccc; margin: 0; padding: 0; margin-right: 5px; width: 50px; }
+#ctHelp a { color: #a9d1ff; }
+
+#ctTimer { display: none; position: absolute; right: 20px; bottom: 12px; font-size: 13pt; color: #ccc; font-family: Georgia; }
+			
+em.ru, em.en,
+p.ru, p.en,
+ul.ru, ul.en { display: none; font-style: normal; }
+
+.RU .ru, .EN .en { display: inline !important; }
+.RU p.ru, .EN p.en,
+.RU ul.ru, .EN ul.en { display: block !important; }

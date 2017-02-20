@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+	<ui:composition template="/facelets/rootTemplate.xhtml">
+		<ui:define name="page">
+			<head>
+				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+				<link rel="stylesheet" type="text/css" href="css/main.css" />
+				<title>Scriptum | #{msg.theatreMetaTextLabel}</title>
+				<script language="JavaScript" src="javascript/client/screenUtil.js" />		
+				<script language="JavaScript">
+				//<![CDATA[
+					var jsGlobalOnLoadFunctions = new Array();
+					    jsGlobalOnLoadFunctions['screenRes'] = 'updateScreenResolution(getScreenResolution())';
+					function onLoadBody(){
+						for(var i in jsGlobalOnLoadFunctions){
+							eval(jsGlobalOnLoadFunctions[i]);
+						}
+					}
+				//]]>
+				</script>
+				<ui:insert name="customJavaScript"></ui:insert>
+			</head>
+			<body onload="onLoadBody();">
+			    <a4j:form>
+			        <a4j:jsFunction name="updateScreenResolution" reRender="showname">
+			            <a4j:actionparam name="param1" assignTo="#{userBean.clientScreenResolution}"  />                  
+			        </a4j:jsFunction>
+		    	</a4j:form>
+				<ui:insert name="navigate">
+					<ui:include src="navigate.xhtml" />
+				</ui:insert>
+			
+				<ui:insert name="masthead">
+					<ui:include src="masthead.xhtml" />
+				</ui:insert>
+			
+				<div class="globalmatrix">
+					<ui:insert name="treeView">
+						<ui:include src="basicNavigator.xhtml" />
+					</ui:insert> 
+					<ui:insert name="matrix">Matrix</ui:insert>
+				</div>
+				<ui:insert name="footer">
+					<ui:include src="footer.xhtml" />
+				</ui:insert>
+			</body>
+		</ui:define>
+	</ui:composition>
+</html>

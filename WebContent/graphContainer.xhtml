@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+	<a name="titles"></a>
+	<div id="seminarTitles" class="seminarTitles">
+		<div id="graphTitle" class="graphTitle"></div>
+		<a name="matrixTitle"></a><div id="matrixTitle" class="matrixTitle"></div>
+	</div>
+	<div id="sliders">
+	    <a4j:form id="slidersForm" reRender="list-body" ajaxSubmit="true" ignoreDupResponses="true" requestDelay="500">
+	        <a4j:keepAlive beanName = "graphHandler"/>
+		    <a4j:status stopStyle="position:relative; float:left; margin-right:10px;" startStyle="position:relative; float:left; margin-right:10px;">
+				<f:facet name="start" >
+					<h:graphicImage value="/images/ajax/ajax-loader-horizontal.gif" />
+				</f:facet>
+				<f:facet name="stop">
+					<h:graphicImage value="/images/ajax/ajax-loader-wh-placehold.png" />
+				</f:facet>
+			</a4j:status>	
+			<h:outputText value="#{msg.graphDepthLabel}" styleClass="sliderLabel"/>
+			<rich:inputNumberSlider showInput="true" id="depthSlider" styleClass="graphSlider"
+	                 showBoundaryValues="false" showToolTip="false" manualInput="true" storeResults="true"
+	                 value="#{graphHandler.graphDepth}" step="1" minValue="1" maxValue="20"
+	                 startRange="#{graphHandler.graphDepth}" endRange="20"
+	                 increment="1" rangeStyleClass="range" trailer="true"
+	                 handleValue="1">
+	                 <a4j:support event="onchange" reRender="updateGraph" />
+	         </rich:inputNumberSlider>
+	           <h:outputText value="#{msg.fontSizeLabel}" styleClass="sliderLabel"/>
+			 <rich:inputNumberSlider showInput="true" id="fontSizeSlider" styleClass="graphSlider" 
+	                 showBoundaryValues="false" showToolTip="false" manualInput="true" storeResults="true" 
+	                 value="#{graphHandler.fontSize}" step="1" minValue="1" maxValue="20"
+	                 onmousemove="setStyleByClass('div','theatreNodeTextDiv','fontSize',this.getElementsByTagName('input')[0].value+'px')"
+	                 startRange="#{graphHandler.fontSize}" endRange="20" increment="1" rangeStyleClass="range" trailer="true"
+	                 handleValue="1">
+	                 <a4j:support event="onchange" reRender="updateGraph" />
+	           </rich:inputNumberSlider>
+	    </a4j:form>
+	</div>
+	<div id="graphContainer">
+		<div id="graph"><noscript><div style="font-size:200%; font-color: red;">scriptum.ru требует поддержки языка JavaScript в вашем браузере. Пожалуста, включите поддержку javascript и перегрузите эту страницу.</div></noscript></div>		
+		<div id="matrix">
+		<!--
+			<a4j:outputPanel ajaxRendered="true">
+				<h:graphicImage id="imageHolder" url="#{graphHandler.url}" rendered="#{graphHandler.templateType == 'imageTemplate'}"/>
+			</a4j:outputPanel>
+		-->
+		</div>
+		<h:form>
+			<a4j:jsFunction name="updateGraph" id="updateGraph" data="#{graphHandler.xml}" reRender="graph" oncomplete="graph.onAjaxComplete(data)">
+				<a4j:actionparam name="id" assignTo="#{graphHandler.id}"></a4j:actionparam>
+			</a4j:jsFunction>
+			<a4j:jsFunction name="showImage" data="#{graphHandler.xml}" reRender="imageHolder" oncomplete="scroll(1000,120)">
+				<a4j:actionparam name="id" assignTo="#{graphHandler.id}"></a4j:actionparam>
+			</a4j:jsFunction>
+			<a4j:jsFunction name="showVideo" data="#{graphHandler.xml}" reRender="imageHolder" oncomplete="scroll(1000,120)">
+				<a4j:actionparam name="id" assignTo="#{graphHandler.contentId}"></a4j:actionparam>
+			</a4j:jsFunction>		
+		</h:form>
+	</div>
+</html>

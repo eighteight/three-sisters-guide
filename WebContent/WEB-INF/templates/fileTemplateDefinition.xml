@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="fileName"
+		class="ru.scriptum.model.properties.Property">
+		<constructor-arg value="fileName" />
+		<constructor-arg value="" />
+		<constructor-arg type="boolean" value="true" />
+		<constructor-arg type="boolean" value="true" />
+	</bean>
+	<bean id="file" class="ru.scriptum.model.properties.Property">
+		<constructor-arg value="file" />
+		<constructor-arg value="" />
+		<constructor-arg type="boolean" value="true" />
+		<constructor-arg type="boolean" value="false" />
+	</bean>
+	<bean id="mimeType" class="ru.scriptum.model.properties.Property">
+		<constructor-arg value="mimeType" />
+		<constructor-arg value="*" />
+		<constructor-arg type="boolean" value="true" />
+		<constructor-arg type="boolean" value="false" />
+	</bean>
+	<bean id="fileSize" class="ru.scriptum.model.properties.Property">
+		<constructor-arg value="fileSize" />
+		<constructor-arg value="*" />
+		<constructor-arg type="boolean" value="false" />
+		<constructor-arg type="boolean" value="false" />
+	</bean>
+	<bean id="fileTemplate"
+		class="ru.scriptum.model.properties.PropertyTemplateFactoryBean">
+		<property name="properties">
+			<list>
+				<ref local="fileName" />
+				<ref local="file" />
+				<ref local="mimeType" />
+				<ref local="fileSize" />
+			</list>
+		</property>
+	</bean>
+</beans>

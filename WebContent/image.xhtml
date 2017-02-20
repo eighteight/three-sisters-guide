@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+
+<ui:composition template="/facelets/fileUploadTemplate.xhtml">
+	<ui:define name="displayControl">
+		<h:graphicImage url="#{mainBean.url}" />
+		<h:outputText value="#{msg.imageAnnotationLabel}" />
+		<h:inputText id="annotation" value="#{mainBean.properties['2'].value}"
+			required="#{mainBean.properties['3'].required}" />
+		<h:message for="annotation" showDetail="true" />
+	</ui:define>
+</ui:composition>
+</html>

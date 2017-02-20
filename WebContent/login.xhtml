@@ -1,0 +1,45 @@
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/facelets/viewTemplate.xhtml">
+
+	<ui:define name="pageHeader">Login</ui:define>
+
+	<ui:define name="matrix">
+		<h:form id="loginForm">
+			<h:inputHidden value="#{userBean.confirmKey}" id="key" />
+		#{msg.prompt}
+		<table align="left" class="box">
+				<tr>
+					<td style="padding:20">
+					<table>
+						<tr>
+							<td align="right"><h:outputText value="Username" /></td>
+							<td align="left"><h:inputText value="#{userBean.username}"
+								id="username" required="true" /> 
+								<h:message styleClass="errorMessage" for="username" /></td>
+						</tr>
+						<tr>
+							<td align="right"><h:outputText value="Password" /></td>
+							<td align="left"><h:inputSecret value="#{userBean.password}"
+								id="password" required="true" />
+								<h:message styleClass="errorMessage" for="password" /></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center"><h:commandButton
+								value="Login" action="#{userBean.loginAction}" /></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center"><h:messages
+								errorClass="errorMessage" globalOnly="true" /></td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+			</table>
+			<h:message showSummary="true" showDetail="false"
+				style="color: red; font-weight:bold;" for="username" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

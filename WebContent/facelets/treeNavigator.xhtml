@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<div class="treeView">
+<h:form id="treeForm" acceptCharset="UTF-8">
+	<ui:param name="mainBean" value="#{heteroBean}" />
+	<t:tree2 id="tree" value="#{treeBean.treeModel}" var="node"
+		varNodeToggler="t" showRootNode="true" clientSideToggle="false"
+		showNav="true" rendered="#{userBean.loggedIn}">
+		<f:facet name="node">
+			<h:panelGroup>
+				<f:facet name="expand">
+					<t:graphicImage value="images/yellow-folder-open.png" rendered="#{t.nodeExpanded}" border="0" />
+				</f:facet>
+				<f:facet name="collapse">
+					<t:graphicImage value="images/yellow-folder-closed.png" rendered="#{!t.nodeExpanded}" border="0" />
+				</f:facet>
+				<h:outputText value="*" rendered="#{t.nodeExpanded}" />
+				<c:set var="template" value="#{node.templateType}" />
+				<t:popup styleClass="popup" displayAtDistanceX="2">
+					<h:commandLink action="#{navigationBean.navigate}" immediate="true"
+						value="#{node.description}"
+						actionListener="#{treeBean.processAction}">
+						<f:actionListener type="ru.scriptum.view.handler.TemplateNavigationBean" />
+						<f:param name="id" value="#{node.identifier}" />
+					</h:commandLink>
+					<f:facet name="popup">
+						<h:panelGrid columns="1">
+							<h:commandLink action="#{navigationBean.navigate}"
+								value="#{node.description}">
+								<f:param name="id" value="#{node.identifier}" />
+							</h:commandLink>
+							<hr />
+							<t:dataList var="entry" value="#{navigationBean.childTemplates[template]}" layout="simple">
+								<h:column>
+									<h:panelGrid columns="1">
+										<h:panelGroup>
+											<h:commandLink action="#{navigationBean.navigate}" actionListener="#{navigationBean.processAction}"
+												value="#{entry}" immediate="true">
+												<f:param name="templateType" value="#{entry}" />
+												<f:param name="parentId" value="#{node.identifier}" />
+											</h:commandLink>
+										</h:panelGroup>
+									</h:panelGrid>
+								</h:column>
+							</t:dataList>
+							<hr />
+							<h:commandLink value="#{msg.deleteLabel}" action="#{mainBean.actionDelete}" rendered="#{!empty node.identifier}" immediate="true" type="submit">
+								<f:param name="id" value="#{node.identifier}" />
+							</h:commandLink>
+							<h:outputLink value="exportXml.jsf" rendered="#{!empty node.identifier}">
+								<h:outputText value="#{msg.exportLabel}"/>
+								<f:param name="id" value="#{node.identifier}" />
+							</h:outputLink>
+						</h:panelGrid>
+					</f:facet>
+				</t:popup>
+				<h:outputText value=" (#{node.childCount})" styleClass="childCount"
+					rendered="#{!empty node.children}" />
+			</h:panelGroup>
+		</f:facet>
+	</t:tree2>
+</h:form></div>
+</html>

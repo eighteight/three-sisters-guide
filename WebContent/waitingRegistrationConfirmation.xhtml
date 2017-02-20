@@ -1,0 +1,42 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/facelets/designTemplate.xhtml">
+
+	<ui:define name="pageHeader">Registration successful</ui:define>
+
+	<ui:define name="matrix">
+		<h:form id="loginForm" acceptCharset="UTF-8">
+			<TABLE align="center" class="box">
+				<TR>
+					<TD
+						style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 20px; PADDING-TOP: 20px">
+					<TABLE>
+						<TR>
+							<TD align="right"><h:outputText value="#{msg.userName}" />
+							</TD>
+							<TD align="left"><h:outputText value="#{userBean.name}"/>
+							 </TD>
+						</TR>
+						<TR>
+							<TD align="right"><h:outputText value="Name" /></TD>
+							<TD align="left"><h:outputText value="#{userBean.username}"/></TD>
+						</TR>
+						<TR>
+							<TD align="right"><h:outputText value="Please check your email" /></TD>
+							<TD align="left"><h:outputText value="#{userBean.email}"/></TD>
+						</TR>
+						<TR>
+							<TD align="right"><h:outputText value="#{msg.locale_label}" />
+							</TD>
+							<TD><h:outputText value="#{userBean.locale}"/></TD>
+						</TR>
+					</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,124 @@
+body {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #ffffff;
+	margin-top: 80px;
+	color: #999999;
+}
+
+td {
+	font-size: 12px;
+}
+
+a {
+	text-decoration: none
+}
+
+a:link {
+	color: #999999
+}
+
+a:visited {
+	color: #999999
+}
+
+a:hover {
+	color: #e90649
+}
+
+a:active {
+	color: #999999
+}
+
+a.highLightLink:link {
+	color: #e90649
+}
+
+a.highLightLink:visited {
+	color: #e90649
+}
+
+a.highLightLink:hover {
+	color: #999999
+}
+
+a.highLightLink:active {
+	color: #e90649
+}
+
+a.highLightLink2:link {
+	color: #0099cc
+}
+
+a.highLightLink2:visited {
+	color: #0099cc
+}
+
+a.highLightLink2:hover {
+	color: #e90649
+}
+
+a.highLightLink2:active {
+	color: #0099cc
+}
+
+.headerText {
+	font-size: 20px;
+}
+
+.headerText2 {
+	font-size: 20px;
+	color: #0099cc
+}
+
+.highLightText {
+	color: #e90649
+}
+
+.highLightText2 {
+	color: #0099cc
+}
+
+.errorMessage {
+	color: #e90649
+}
+
+.box {
+	border: 2px;
+	border-color: #999999;
+	border-style: solid;
+	margin: 100;
+}
+
+.treeView {
+	float: left;
+	backgound-color: #ff0000;
+}
+
+.beanEdit {
+	float: left;
+	position: relative;
+	margin-left: 70px;
+	margin-bottom: 20px;
+	top: 60px;
+	background-color: eeeeee;
+}
+
+.textEdit {
+	float: left;
+	position: relative;
+	margin-left: 70px;
+	margin-bottom: 20px;
+	top: 60px;
+	background-color: eeeeee;
+}
+
+.popup {
+	background-color: ffffff;
+	color: 000000;
+	z-index: 999;
+}
+
+.list-column-right {
+	text-align: right;
+}

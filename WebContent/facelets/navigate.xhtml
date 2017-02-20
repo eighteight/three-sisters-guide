@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core">
+<div align="right" style="margin-right: 20px;">
+<h:form id="headerForm">
+	<h:outputText value="#{msg.userLabel} " rendered="true" />
+	<h:outputLink value="userProfile.jsf" rendered="#{userBean.loggedIn}" >
+		<h:outputText value="#{userBean.username}" />
+	</h:outputLink>
+	<h:outputText value=" | " styleClass="highLightText" />
+	<h:outputLink value="listTemplateBeans.jsf" styleClass="highLightLink">
+		<h:outputText value="#{msg.listProjectsLabel}" />
+		<f:param name="templateType" value="projectTemplate" />
+	</h:outputLink>
+	<h:outputText value=" | " styleClass="highLightText" />
+	<c:choose>
+		<c:when test="#{userBean.loggedIn}">
+			<h:outputLink value="listBeans.jsf" styleClass="highLightLink">
+				<h:outputText value="#{msg.listNodesLabel}" />
+				<f:param name="templateType" value="projectTemplateType" />
+			</h:outputLink>
+			<h:outputText value=" | " styleClass="highLightText" />
+			<h:outputLink value="graph.jsf" styleClass="highLightLink">
+				<h:outputText value="#{msg.showMapLabel}" />
+				<f:param name="templateType" value="projectTemplateType" />
+			</h:outputLink>
+			<h:outputText value=" | " styleClass="highLightText" />
+			<h:outputLink value="design.jsf" styleClass="highLightLink">
+				<h:outputText value="#{msg.designLabel}" />
+			</h:outputLink>
+			<h:outputText value=" | " styleClass="highLightText" />
+			<h:commandLink styleClass="highLightLink"
+				action="#{userBean.logoutAction}">
+				<h:outputText value="#{msg.logoutLabel}" />
+			</h:commandLink>
+			<h:outputText value=" | " styleClass="highLightText" />
+			<h:outputLink value="flow.jsf" styleClass="highLightLink">
+				<f:verbatim>flow</f:verbatim>
+			</h:outputLink>
+		</c:when>
+		<c:otherwise>
+			<h:outputLink styleClass="highLightLink" value="login.jsf">
+				<h:outputText value="#{msg.login}" />
+			</h:outputLink>
+			<h:outputText value=" | " styleClass="highLightText" />
+			<h:outputLink value="registerUser.jsf" styleClass="highLightLink">
+				<h:outputText value="#{msg.welcome}" />
+			</h:outputLink>
+			<h:outputText value=" | " styleClass="highLightText" />
+			<h:outputLink value="message.jsf" styleClass="highLightLink">
+				<f:verbatim>contact us</f:verbatim>
+			</h:outputLink>
+			<h:outputText value=" | " styleClass="highLightText" />
+			<h:outputLink value="flow.jsf" styleClass="highLightLink">
+				<f:verbatim>flow</f:verbatim>
+			</h:outputLink>
+		</c:otherwise>
+	</c:choose>
+</h:form>
+</div>
+</html>

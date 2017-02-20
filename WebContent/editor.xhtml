@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition template="/facelets/designTemplate.xhtml">
+	<ui:define name="pageHeader">#{msg.enterTextLabel}</ui:define>
+	<ui:param name="mainBean" value="#{textBean}" />
+	<ui:define name="matrix">
+		<h:form id="textEdit" styleClass="textEdit" acceptCharset="UTF-8">
+			<h:outputText value="#{empty mainBean.id?'create':'edit'}" /> a child of #{mainBean.parentName}
+					<h:inputHidden id="parentId" value="#{mainBean.parentId}" />
+			<h:outputText value="#{mainBean.properties[0].name}" />
+			<h:inputText id="p1" value="#{mainBean.properties[0].value}"
+				size="25" required="#{mainBean.properties[0].required}"
+				rendered="#{mainBean.persists}" />
+			<h:inputText id="p2" value="#{mainBean.properties[0].value}"
+				size="25" required="#{mainBean.properties[0].required}"
+				validator="#{mainBean.validateProperty}"
+				rendered="#{!mainBean.persists}" />
+			<h:message styleClass="errorMessage" for="p1"
+				binding="#{mainBean.errorMessage}" rendered="#{mainBean.persists}" />
+			<h:message styleClass="errorMessage" for="p2"
+				binding="#{mainBean.errorMessage}" rendered="#{!mainBean.persists}" />
+			<div style="position: relative; float: left; width: 500px">
+				<t:inputHtml value="#{mainBean.properties[1].value}" style="height: 40ex;" />
+			</div>
+			
+			<ui:include src="/editCreateDeleteLinks.xhtml" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

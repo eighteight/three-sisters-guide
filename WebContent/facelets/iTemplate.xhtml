@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+	<ui:composition template="/facelets/rootTemplate.xhtml">
+		<ui:define name="page">
+			<head>
+				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+				<link rel="stylesheet" type="text/css" href="css/main.css" />
+				<title>Scriptum | #{msg.theatreMetaTextLabel}</title>
+				<script language="JavaScript" src="javascript/client/screenUtil.js" />		
+				<script language="JavaScript">
+				//<![CDATA[
+					var jsGlobalOnLoadFunctions = new Array();
+					    jsGlobalOnLoadFunctions['screenRes'] = 'updateScreenResolution(getScreenResolution())';
+					function onLoadBody(){
+						for(var i in jsGlobalOnLoadFunctions){
+							eval(jsGlobalOnLoadFunctions[i]);
+						}
+					}
+				//]]>
+				</script>
+				<ui:insert name="customJavaScript"></ui:insert>
+			</head>
+			<body onload="onLoadBody();">
+			    <a4j:form>
+			        <a4j:jsFunction name="updateScreenResolution" reRender="slidersForm">
+			            <a4j:actionparam name="resolution" assignTo="#{userBean.clientScreenResolution}"  />                  
+			        </a4j:jsFunction>
+		    	</a4j:form>		
+				<div class="globalmatrix" id="globalmatrix">
+					<ui:insert name="matrix">Matrix</ui:insert>
+				</div>
+			</body>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+<div id="pageNav">
+	<h:outputText value="#{msg.allProjectsLabel}: " />
+	<ui:repeat var="templateBean" value="#{projectListHandler.beanList}"
+		styleClass="box">
+		<h:outputLink value="showProject.jsf" styleClass="highLightLink">
+			<h:outputText value="#{templateBean.name}" />
+			<f:param name="id" value="#{templateBean.id}" />
+		</h:outputLink> / 
+	</ui:repeat>
+</div>
+
+<div class="siteInfo">
+© 2003-2007 <a href=".">scriptum.ru</a>
+</div>
+</html>
+

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd"
+	default-init-method="init" default-destroy-method="destroy">
+<!-- db4o -->
+	<bean id="db4oServer"
+		class="ru.scriptum.db4o.spring.Db4oServerFactoryBean">
+		<property name="filename">
+			<value>file:WEB-INF/db4oserver.yap</value>
+		</property>
+
+		<property name="port">
+			<value>1555</value>
+		</property>
+
+		<property name="blobPath">
+			<value>file:blobs/</value>
+		</property>
+
+		<property name="allowVersionUpdates">
+			<value>true</value>
+		</property>
+
+		<property name="password">
+			<value>password</value>
+		</property>
+
+		<property name="user">
+			<value>user</value>
+		</property>
+
+		<property name="activationDepth">
+			<value>5</value>
+		</property>
+
+		<property name="readonly">
+			<value>false</value>
+		</property>
+
+		<property name="classConfigurations">
+			<list>
+				<bean
+					class="ru.scriptum.db4o.spring.Db4oClassConfiguration">
+					<property name="className">
+						<value>java.util.Date</value>
+					</property>
+					<property name="cascadeOnActivate">
+						<value>true</value>
+					</property>
+					<property name="cascadeOnUpdate">
+						<value>true</value>
+					</property>
+					<property name="fieldConfigurations">
+						<bean
+							class="ru.scriptum.db4o.spring.Db4oFieldConfiguration">
+							<property name="fieldName">
+								<value>time</value>
+							</property>
+							<property name="indexed">
+								<value>true</value>
+							</property>
+						</bean>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>

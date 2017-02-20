@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+<ui:composition template="/facelets/designTemplate.xhtml">
+	<ui:param name="mainBean" value="#{uploadBean}" />
+	<ui:define name="pageHeader">Design</ui:define>
+	<ui:define name="design">
+		<h:panelGroup id="body" style="">
+			<h:outputText value="#{mainBean.parentName} -> ..."
+				rendered="#{!mainBean.persists}" />
+			<h:form id="fileUpload" enctype="multipart/form-data">
+				<h:panelGrid columns="1" rendered="true">
+					<ui:insert name="displayControl">
+							Here goes your upload control
+					</ui:insert>
+				</h:panelGrid>
+				<h:inputHidden id="parentId" value="#{mainBean.parentId}" />
+				<h:outputText value="#{msg.chooseImageLabel} " />
+				<t:inputFileUpload id="fileupload" accept="#{mainBean.mimeType}" value="#{mainBean.upFile}" storage="file" styleClass="fileUploadInput" required="true" maxlength="200000000" />
+				<h:message for="fileupload" showDetail="true" />
+				<h:outputText value="#{msg.imageNameLabel}" />
+				<h:inputText id="imageName" value="#{mainBean.properties['0'].value}" required="#{mainBean.properties['0'].required}" />
+				<h:message for="imageName" showDetail="true" />
+				<div>
+					<h:commandLink value="#{msg.loadImageLabel}" action="#{mainBean.upload}">
+						<f:param name="templateType" value="#{mainBean.templateType}" />
+					</h:commandLink>
+					<h:outputText value=" / " styleClass="highLightText" rendered="#{mainBean.persists}" />
+					<h:commandLink value="#{msg.deleteLabel}" action="#{mainBean.actionDelete}" type="submit" rendered="#{mainBean.persists}" immediate="true">
+						<f:param name="id" value="#{mainBean.id}" />
+					</h:commandLink>
+					<h:outputText value=" / " styleClass="highLightText" rendered="#{mainBean.persists}" />
+					<h:outputLink value="editBean.jsf" rendered="#{mainBean.persists}">
+						<h:outputText value="#{msg.rawEditLabel}"/>
+						<f:param name="id" value="#{mainBean.id}" />
+						<f:param name="templateType" value="projectTemplate" />
+					</h:outputLink>
+				</div>
+			</h:form>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>
+</html>

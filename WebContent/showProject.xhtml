@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<ui:composition template="/facelets/viewTemplate.xhtml">
+	<ui:param name="mainBean" value="#{projectHandler}" />
+	<ui:define name="masthead">
+		<div id="masthead">
+		<div class="title"><h:outputText
+			value="#{mainBean.properties[0].value}" /></div>
+		<div class="title2"><h:outputText
+			value="#{mainBean.properties[1].value}" /></div>
+		<div class="title3"><h:outputText
+			value="#{mainBean.properties[2].value}" /></div>
+		<div class="title3"><h:outputText
+			value="#{mainBean.properties[3].value}" /></div>
+		<div class="title3"><h:outputText
+			value="#{mainBean.properties[4].value}" /></div>
+		</div>
+	</ui:define>
+
+	<ui:define name="matrix">
+		<div class="matrix">
+			<ui:repeat value="#{projectHandler.atoms}"
+				var="atom">
+				<div class="matrixcell" style="cursor:hand; cursor:pointer" onclick="">
+				<div
+					style="height:170px;width:170px;position:absolute;top:0px;left:0px; 
+				background-image:  url(present/venus/images/The_Whirlwind_Tour_Sheetmus.png); background-repeat: no-repeat;">
+				<div style="margin-top:130px"></div>
+				<span class="lowerLabel"><h:outputText value="#{atom.name}"></h:outputText></span></div>
+				</div>
+			</ui:repeat>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>

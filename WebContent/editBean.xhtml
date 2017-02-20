@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:c="http://java.sun.com/jstl/core">
+<ui:composition template="/facelets/designTemplate.xhtml">
+	<ui:param name="mainBean" value="#{heteroBean}" />
+	<ui:define name="pageHeader">Design</ui:define>
+	<ui:define name="design">
+	<div id="design">
+	
+	<ui:insert name="customControl"></ui:insert>
+		<h:form id="beanEdit" styleClass="beanEdit">
+			<h:outputText value="#{empty mainBean.id?'create':'edit'}" /> #{mainBean.parentName} -> #{mainBean.name}
+					<h:inputHidden id="parentId" value="#{mainBean.parentId}" />
+			<t:dataList var="property" binding="#{mainBean.uiData}" value="#{mainBean.properties}" layout="orderedList">
+				<h:column>
+					<h:outputText value="#{property.name}" />
+				</h:column>
+				<h:column rendered="#{empty property.defaultValues}">
+					<h:inputText id="p1" value="#{property.value}"
+						required="#{property.required}" rendered="#{mainBean.persists}" />
+					<h:inputText id="p2" value="#{property.value}"
+						required="#{property.required}"
+						validator="#{mainBean.validateProperty}"
+						rendered="#{!mainBean.persists}" />
+					<h:message styleClass="errorMessage" for="p1"
+						binding="#{mainBean.errorMessage}" rendered="#{mainBean.persists}" />
+					<h:message styleClass="errorMessage" for="p2"
+						binding="#{mainBean.errorMessage}"
+						rendered="#{!mainBean.persists}" />
+				</h:column>
+				<h:column rendered="#{not empty property.defaultValues}">
+					<h:selectOneMenu id="defaultValues" value="#{property.value}">
+						<f:selectItems value="#{property.defaultValues}" />
+					</h:selectOneMenu>
+				</h:column>
+			</t:dataList>
+
+			<ui:include src="/editCreateDeleteLinks.xhtml" />
+			<h:messages errorClass="errorMessage" globalOnly="true" />
+		</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

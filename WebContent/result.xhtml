@@ -1,0 +1,54 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/facelets/designTemplate.xhtml">
+
+	<ui:define name="pageHeader">You successfully logged in</ui:define>
+
+	<ui:define name="matrix">
+		<h:message showSummary="true" showDetail="false"
+			style="color: red; font-weight:bold;" for="name" />
+		<form jsfc="h:form" id="loginForm">#{msg.prompt}
+		<table align="center" class="box">
+			<tr>
+				<td style="padding:20">
+				<table>
+					<tr>
+						<td align="right"><input jsfc="h:outputText" value="Username" />
+						</td>
+						<td align="left"><input jsfc="h:inputText"
+							value="#{userBean.username}" id="username" required="true" /> <input
+							jsfc="h:message" styleClass="errorMessage" for="username" /></td>
+					</tr>
+					<tr>
+						<td align="right"><input jsfc="h:outputText" value="Password" />
+						</td>
+						<td align="left"><input jsfc="h:inputSecret"
+							value="#{userBean.password}" id="password" required="true" /> <input
+							jsfc="h:message" styleClass="errorMessage" for="password" /></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input jsfc="h:commandButton"
+							value="Login" action="#{userBean.loginAction}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input jsfc="h:messages"
+							errorClass="errorMessage" globalOnly="true" /></td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+		</table>
+		</form>
+	</ui:define>
+</ui:composition>
+</html>
+
+
+
+
+
+
+
+

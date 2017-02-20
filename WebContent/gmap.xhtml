@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax">
+
+<f:view contentType="text/html">
+	<head>
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+
+	<script
+		src="http://maps.google.com/maps?file=api&amp;v=17&amp;key=ABQIAAAAqbEVVAa5Toe_gj0meZ7aYxTwM0brOpm-All5BF6PoaKBxRWWERSgRzYusCZ1_WazSU6CJAWK_aP8ZA"
+		type="text/javascript">
+	</script>
+	<script type="text/javascript">
+    //<![CDATA[
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+        window.map = new GMap2(document.getElementById("map"));
+        map.setCenter(new GLatLng(37.4419, -122.1419), 1, G_SATELLITE_MAP);
+        map.addControl(new GMapTypeControl());
+        map.addControl(new GLargeMapControl());        
+      }
+    }
+    
+    function onAjaxComplete(lat, lng, zoom, desc){
+    	map.setCenter(new GLatLng(lat, lng), zoom);
+    	var point = new GLatLng(lat, lng);
+		var marker = new GMarker(point);
+		  GEvent.addListener(marker, "click", function() {
+		    var content = "<h1>"+desc+"</h1>";
+		    content += "<a href='http://www.example.com?view=abc&state=123'>Link to Maps API Version</a>";
+		    marker.openInfoWindowHtml(content);
+		  });
+		  map.addOverlay(marker);
+    }
+
+    //]]>
+    </script>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+
+	<body onload="load()" onunload="GUnload()">
+	<div id="masthead">
+		<div class="title">Scriptum.ru: на карте</div>
+		<div class="title3">По мотивам произведения М.Ю. Лермонтова</div>
+		<div class="title3">Режиссер Дмитрий Крымов, «Школа	Драматического Искусства»</div>
+	</div>
+	<div class="globalmatrix">
+	<div id="logo"><a href="."><img
+		src="images/logo-theatron-vert-black.gif" border="0"
+		alt="все метатексты" /></a></div>
+
+	<div class="navigationBar">демон. вид сверху</div>
+	<div id="map" style="width: 340px; height: 340px; position: relative; float: left;"></div>
+
+	<a4j:repeat var="place" value="#{gmapHandler.points}">
+		<div class="matrixcell"><h:graphicImage
+			onclick="showPlace('#{place.id}')" style="cursor:pointer"
+			value="resource://#{place.pic}" /></div>
+	</a4j:repeat>
+	<h:form>
+		<a4j:jsFunction name="showPlace" data="#{gmapHandler.currentPlace}"
+			reRender="description"
+			oncomplete="onAjaxComplete(data.lat, data.lng, data.zoom, data.desc)">
+			<a4j:actionparam name="id" assignTo="#{gmapHandler.currentId}"></a4j:actionparam>
+		</a4j:jsFunction>
+	</h:form> Selected place: <h:outputText id="description"
+		value="#{gmapHandler.currentPlace.desc}" />
+	<hr align="left" width="800" />
+	<p style="width:800px"></p>
+	</div>
+	</body>
+</f:view>
+</html>

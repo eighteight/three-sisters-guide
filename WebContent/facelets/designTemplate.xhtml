@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+<f:view locale="#{userBean.locale}">
+	<f:loadBundle basename="ru.scriptum.view.bundle.MessageBundle" var="msg" />
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<title>Scriptum | #{msg.theatreMetaTextLabel}</title>
+	</head>
+	<body>
+	<ui:insert name="navigate">
+		<ui:include src="navigate.xhtml" />
+	</ui:insert>
+	<ui:insert name="masthead">
+		<ui:include src="masthead.xhtml" />
+	</ui:insert>
+	
+	<div class="globalmatrix">
+		<ui:insert name="treeView">
+			<ui:include src="basicNavigator.xhtml" />
+		</ui:insert>
+
+		<ui:define name="matrix">
+			<div id="seminarTitles" class="seminarTitles">
+				<div id="graphTitle" class="graphTitle"></div>
+				<div id="matrixTitle" class="matrixTitle"></div>
+			</div>
+	        <div id="matrix">
+	        	<ui:include src="treeNavigator.xhtml" />
+	        </div>
+		</ui:define>
+		<ui:insert name="design"></ui:insert>
+	</div>
+	
+	<ui:insert name="footer">	
+		<ui:include src="footer.xhtml" />
+	</ui:insert>
+	</body>
+</f:view>
+</html>

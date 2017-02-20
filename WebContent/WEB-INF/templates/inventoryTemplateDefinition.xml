@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="inventoryNameLabel"
+		class="ru.scriptum.model.properties.Property">
+		<constructor-arg value="inventoryName" />
+		<constructor-arg value="" />
+		<constructor-arg type="boolean" value="true" />
+		<constructor-arg type="boolean" value="true" />
+	</bean>
+
+	<bean id="inventoryTemplate"
+		class="ru.scriptum.model.properties.PropertyTemplateFactoryBean">
+		<property name="properties">
+			<list>
+				<ref local="inventoryNameLabel" />
+			</list>
+		</property>
+		<property name="childTemplates">
+			<list>
+				<value>imageTemplate</value>
+				<value>textTemplate</value>
+				<value>videoTemplate</value>
+				<value>fileTemplate</value>
+			</list>
+		</property>
+	</bean>
+</beans>

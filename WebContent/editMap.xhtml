@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:rich="http://richfaces.ajax4jsf.org/rich">
+
+<ui:composition template="editBean.xhtml">
+	<ui:define name="customControl">
+
+		<h:form id="putOnMapForm">
+			<h:panelGrid class="vertical-menu-cell" columns="1" cellspacing="0"
+				cellpadding="0">
+				<rich:dropDownMenu value="Put on #{mainBean.name} map" direction="bottom-right"
+					jointPoint="tr">
+					<rich:menuItem value="images" actionListener="#{editMapHandler.actionListener}">
+						<f:facet name="icon">
+							<h:graphicImage value="/richfaces/toolBar/images/print.gif" />
+						</f:facet>
+						<f:attribute name="template" value="inventoryTemplate" />
+						<f:param name="mapId" value="#{mainBean.id}" />
+					</rich:menuItem>
+				</rich:dropDownMenu>
+			</h:panelGrid>
+		</h:form>
+		<a4j:outputPanel ajaxRendered="true">
+			<h:messages></h:messages>
+		</a4j:outputPanel>
+
+		<rich:dragIndicator id="indicator"></rich:dragIndicator>
+		<h:form id="form">
+
+			<h:panelGrid columnClasses="panelc" columns="4" width="100%">
+
+				<rich:panel styleClass="dropTargetPanel" id="dropPanelZhopa">
+					<f:facet name="header">
+						<h:outputText value="Map" />
+					</f:facet>
+					<rich:dropSupport id="php" acceptedTypes="*" dropValue="PHP"
+						dropListener="#{mapEventBean.processDrop}" reRender="map, src">
+					</rich:dropSupport>
+
+					<h:dataTable id="map" columns="1"
+						value="#{editMapHandler.mapAtoms}" var="atom">
+						<h:column>
+							<h:graphicImage url="/blobs/#{atom.properties['1'].value}" />
+						</h:column>
+					</h:dataTable>
+				</rich:panel>
+				<rich:panel style="width:100px">
+					<f:facet name="header">
+						<h:outputText value="Atoms" />
+					</f:facet>
+					<h:dataTable id="src" columns="1"
+						value="#{editMapHandler.availableAtoms}" var="atom">
+
+						<h:column>
+							<a4j:outputPanel style="border:1px solid gray;padding:2px;"
+								layout="block">
+								<rich:dragSupport dragIndicator=":indicator" dragType="*"
+									dragValue="#{atom}">
+									<rich:dndParam name="label" value="#{atom.name}" />
+								</rich:dragSupport>
+								<h:graphicImage url="/blobs/#{atom.properties['1'].value}" />
+							</a4j:outputPanel>
+						</h:column>
+					</h:dataTable>
+				</rich:panel>
+			</h:panelGrid>
+			<a4j:commandLink action="#{editMapHandler.reset}" value="Start Over"
+				reRender="src,map" />
+			<a4j:commandLink value="#{msg.createLabel}"
+				action="#{editMapHandler.save}" type="submit" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
